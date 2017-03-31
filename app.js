@@ -33,4 +33,5 @@ var appRouter = require('./router/index')
 appRouter(router)
 
 app.listen(8080)
+
 console.log('server listen 8080')
