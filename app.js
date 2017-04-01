@@ -29,8 +29,8 @@ var router = require('koa-router')()
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-var body = require('koa-better-body')
-app.use(body())
+// var body = require('koa-better-body')
+// app.use(body())
 
 var appRouter = require('./router/index')
 appRouter(router)
