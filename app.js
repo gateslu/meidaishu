@@ -11,8 +11,8 @@ var app = new Koa()
 
 //模板路径
 var render = views(__dirname + '/weui/src/example', {
-                map: { html: 'ejs' }
-            })
+    map: { html: 'ejs' }
+})
 console.log(render)
 app.use(render)
 
@@ -22,12 +22,15 @@ app.use(cors())
 
 //静态文件cache
 app.use(staticCache(staticDir));
-app.use(staticCache(staticDir+'/example'));
+app.use(staticCache(staticDir + '/example'));
 
 //设置路由
 var router = require('koa-router')()
 app.use(router.routes())
 app.use(router.allowedMethods())
+
+var body = require('koa-better-body')
+app.use(body())
 
 var appRouter = require('./router/index')
 appRouter(router)
