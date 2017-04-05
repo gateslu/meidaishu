@@ -12,24 +12,25 @@
     <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
     <script>
         $(document).ready(function() {
-            // $("#btnLogin").click(function() {
-            //     // var $username = $('#username')
-            //     // var $password = $('#password')
-            //     // alert($username.val() + ' ' + $password.val())
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: "/login",
-            //         data: $('#loginForm').serialize(),
-            //         // dataType: 'JSON',
-            //         success: function(data) {
-            //             // alert("hello world:" + JSON.stringify(data))
-            //         },
-            //         error: function(p1, p2, p3) {
-            //             alert("oh my god")
-            //         }
-            //     });
-            //     // $("#myDiv").html(htmlobj.responseText);
-            // });
+            $("#btnLogin").click(function() {
+                // var $username = $('#username')
+                // var $password = $('#password')
+                // alert($username.val() + ' ' + $password.val())
+                $.ajax({
+                    type: 'POST',
+                    url: "/login",
+                    data: $('#loginForm').serialize(),
+                    dataType: 'JSON',
+                    success: function(data) {
+                        data = JSON.parse(data)
+                        location.href = data.url
+                    },
+                    error: function(p1, p2, p3) {
+                        // alert("oh my god")
+                    }
+                });
+                // $("#myDiv").html(htmlobj.responseText);
+            });
         });
 
         function login() {
@@ -64,7 +65,7 @@
 <body ontouchstart>
     <div class="backgroundLogin">
         <div id="login_panel_bk" class="weui-cells weui-cells_form">
-            <form id="loginForm" action="/login" method="POST">
+            <form id="loginForm">
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">用户明</label></div>
                     <div class="weui-cell__bd">
@@ -77,8 +78,8 @@
                         <input id="password" name="password" type="password" class="weui-input" placeholder="请输入密码">
                     </div>
                 </div>
-                <input href="javascript:;" type="submit" id="btnLogin" class="weui-btn weui-btn_primary" value="登录"></input>
             </form>
+            <input href="javascript:;" type="submit" id="btnLogin" class="weui-btn weui-btn_primary" value="登录"></input>
 
         </div>
     </div>
