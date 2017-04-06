@@ -73,7 +73,7 @@ router.get('/get_tab', async ctx => {
         title: 'app'
     }
 
-    console.log(params)
+    // console.log(params)
     if (params.page === "home") {
         await ctx.render('tab_home.html', {});
     } else if (params.page === "shop") {
