@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="../style/weui.css" />
+    <link rel="stylesheet" href="./example.css" />
+    <script src="./zepto.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+    <style>
+        .tabcontent {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body ontouchstart>
+    <div id="loadingToast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-loading weui-icon_toast"></i>
+            <p class="weui-toast__content">数据加载中</p>
+        </div>
+    </div>
+    <div class="container" id="container">
+        <div class="page tabbar js_show">
+            <div class="page__bd" style="height: 100%;">
+                <div class="weui-tab">
+                    <div id="page_content" class="weui-tab__panel">
+                        <div id="subpage"></div>
+                        <!--<div id="page_home" class="tabcontent">
+                            <p>首页</p>
+                        </div>-->
+                        <!--<div id="page_shop" class="tabcontent">
+                            <p>到店</p>
+                        </div>
+                        <div id="page_me" class="tabcontent">
+                            <p>我的</p>
+                        </div>-->
+                    </div>
+                    <div class="weui-tabbar">
+                        <a href="javascript:;" id="tab_home" class="weui-tabbar__item weui-bar__item_on">
+                            <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            </span>
+                            <p class="weui-tabbar__label">首页</p>
+                        </a>
+                        <a href="javascript:;" id="tab_shop" class="weui-tabbar__item">
+                            <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            <p class="weui-tabbar__label">到店</p>
+                        </a>
+                        <a href="javascript:;" id="tab_mine" class="weui-tabbar__item">
+                            <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            <p class="weui-tabbar__label">我的</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" class="tabbar js_show">
+            $(function() {
+
+                function getTab(tab_name) {
+                    var $page_content = $('#page_content')
+                    $('#page_content').load('get_tab', {
+                        page: tab_name
+                    }, function(response, status, xhr) {
+                        $('subpage').innerHTML = response
+
+                        var $loadingToast = $('#loadingToast');
+                        $loadingToast.fadeOut(100);
+                    })
+                }
+
+                $('.weui-tabbar__item').on('click', function() {
+
+                    var $loadingToast = $('#loadingToast');
+                    $loadingToast.fadeIn(100);
+
+                    var i, tabcontent;
+                    tabcontent = $('.tabcontent')
+
+                    $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+
+                    var tab_name
+                    if ($(this).attr('id') === 'tab_home') {
+                        getTab("home")
+                    } else if ($(this).attr('id') === 'tab_shop') {
+                        getTab("shop")
+                    } else if ($(this).attr('id') === 'tab_mine') {
+                        getTab("mine")
+                    }
+
+
+                })
+
+                function init() {
+                    getTab("home")
+                }
+
+                init()
+            });
+        </script>
+    </div>
+
+
+</body>
+
+</html>
