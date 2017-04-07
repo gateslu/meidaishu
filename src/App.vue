@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     startHacking () {
-      this.$toast('It Works!')
+      this.$toast('It Works, hehe!')
     }
   }
 }
