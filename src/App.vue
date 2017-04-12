@@ -50,3 +50,19 @@ a {
   color: #42b983;
 }
 </style>
+<template>
+  <p>hello {{ title }}</p>
+</template>
+
+
+
+
+<script>
+module.exports = {
+  data: function () {
+    return {
+      title: "meidaishu"
+    }
+  }
+}
+</script>
